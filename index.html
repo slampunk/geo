@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <main>
+  </main>
+  <script>
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    }
+
+    let main = document.querySelector('main');
+
+    function success(pos) {
+      let crd = pos.coords;
+
+      main.innerHTML = `
+		    <p>Lat: ${crd.latitude}</p>
+		    <p>Lng: ${crd.longitude}</p>
+		    <p>Accuracy: ${crd.accuracy}</p>
+		    <p>Alt: ${crd.altitude}</p>
+		    <p>Speed: ${crd.speed}</p>
+		    <p>Heading: ${crd.heading}</p>
+	    `;
+    }
+
+    function err() {
+	    console.log('some error');
+    }
+
+    navigator.geolocation.watchPosition(success, err, options);
+  </script>
+</body>
+</html>
